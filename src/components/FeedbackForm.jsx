@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import Card from './shared/Card'
 import Button from "./shared/Button";
-import {isDisabled} from "@testing-library/user-event/dist/utils";
+import RatingSelect from "./RatingSelect";
 
 function FeedbackForm(props) {
     const [text, setText] = useState('');
     const [btnDisabled, setBtnDisabled] = useState(true);
     const [message, setMessage] = useState('');
+    const [rating, setRating] = useState(1);
 
 
     const handleTextChange = (e) => {
@@ -26,7 +27,7 @@ function FeedbackForm(props) {
     return <Card>
         <form action="">
             <h2>How would your rate your service with us?</h2>
-            {/* @todo - rating select component*/}
+            <RatingSelect select={setRating}/>
             <div className="input-group">
                 <input
                     onChange={handleTextChange}
