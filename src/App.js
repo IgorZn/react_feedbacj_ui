@@ -13,7 +13,7 @@ function App() {
         <>
             <Header/>
             <div className="container">
-                <FeedbackForm/>
+                <FeedbackForm setFeedback={setFeedback}/>
                 <FeedbackStats feedback={feedback} />
                 <FeedBackList feedback={feedback} setFeedback={setFeedback}/>
             </div>
