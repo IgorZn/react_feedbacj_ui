@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {BrowserRouter, Route, Routes} from 'react-router-dom'
+import {BrowserRouter, Route, Routes, NavLink} from 'react-router-dom'
 //
 import Header from "./components/Header";
 import FeedbackData from "./fakeData";
@@ -8,6 +8,8 @@ import FeedbackStats from "./components/FeedbackStats";
 import FeedbackForm from "./components/FeedbackForm";
 import About from "./pages/About";
 import AboutIconLink from "./components/AboutIconLink";
+import Card from "./components/shared/Card";
+import Post from "./components/Post";
 
 function App() {
     const [feedback, setFeedback] = useState(FeedbackData);
@@ -27,8 +29,17 @@ function App() {
                         }>
                         </Route>
                         <Route path="/about" element={<About/>}/>
+                        <Route path="/post/:id/:name" element={<Post/>}/>
                     </Routes>
                 </div>
+                <Card revIsEnable={false}>
+                    <NavLink to={'/'} activeclassname={'active'}>
+                        Home
+                    </NavLink>
+                    <NavLink to={'/about'} activeclassname={'active'}>
+                        About
+                    </NavLink>
+                </Card>
                 <AboutIconLink/>
             </BrowserRouter>
 

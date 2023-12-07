@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 // Style component
-function Card({reverse, children}) {
+function Card({reverse, children, revIsEnable}) {
     const [revColor, setRevColor] = useState(reverse);
 
     const handleReverse = () => {
@@ -11,7 +11,8 @@ function Card({reverse, children}) {
         <>
             <div className={`card ${revColor && 'reverse'}`}>
                 {children}
-                <button onClick={handleReverse} className={"btn btn-secondary"}>Reverse card color</button>
+                {revIsEnable && <button onClick={handleReverse} className={"btn btn-secondary"}>Reverse card color</button>}
+
             </div>
 
         </>
