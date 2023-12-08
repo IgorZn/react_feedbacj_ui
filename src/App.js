@@ -10,6 +10,7 @@ import About from "./pages/About";
 import AboutIconLink from "./components/AboutIconLink";
 import Card from "./components/shared/Card";
 import Post from "./components/Post";
+import Tost from "./components/Tost";
 
 function App() {
     const [feedback, setFeedback] = useState(FeedbackData);
@@ -30,6 +31,7 @@ function App() {
                         </Route>
                         <Route path="/about" element={<About/>}/>
                         <Route path="/post/:id/:name" element={<Post/>}/>
+                        <Route path="/tost/*" element={<Tost/>}/>
                     </Routes>
                 </div>
                 <Card revIsEnable={false}>
