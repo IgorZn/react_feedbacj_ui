@@ -25,8 +25,8 @@ function App() {
                         <Route exact path="/" element={
                             <>
                                 <FeedbackForm setFeedback={setFeedback}/>
-                                <FeedbackStats feedback={feedback}/>
-                                <FeedBackList feedback={feedback} setFeedback={setFeedback}/>
+                                <FeedbackStats/>
+                                <FeedBackList setFeedback={setFeedback}/>
                             </>
                         }>
                         </Route>
