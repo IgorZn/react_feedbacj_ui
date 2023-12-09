@@ -11,12 +11,13 @@ import AboutIconLink from "./components/AboutIconLink";
 import Card from "./components/shared/Card";
 import Post from "./components/Post";
 import Tost from "./components/Tost";
+import {FeedbackProvider} from "./context/FeedbackContext";
 
 function App() {
     const [feedback, setFeedback] = useState(FeedbackData);
 
     return (
-        <>
+        <FeedbackProvider>
             <BrowserRouter>
                 <Header/>
                 <div className="container">
@@ -45,7 +46,7 @@ function App() {
                 <AboutIconLink/>
             </BrowserRouter>
 
-        </>
+        </FeedbackProvider>
     );
 }
 
