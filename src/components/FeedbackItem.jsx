@@ -1,12 +1,12 @@
 import React, {useContext} from 'react';
 import Card from "./shared/Card";
 import PropTypes from "prop-types";
-import { FaTimes} from "react-icons/fa";
+import { FaTimes, FaEdit } from "react-icons/fa";
 import FeedbackContext from "../context/FeedbackContext";
 
 
-function FeedbackItem({item, setFeedback}) {
-    const {handleClose} = useContext(FeedbackContext);
+function FeedbackItem({item}) {
+    const {handleClose, editFeedback} = useContext(FeedbackContext);
 
     return (
         <Card reverse={false}>
@@ -14,7 +14,8 @@ function FeedbackItem({item, setFeedback}) {
             <button className="close" onClick={() => handleClose(item.id)}>
                 <FaTimes color={"purple"} />
             </button>
-            <div className="text-display">{item.text}</div>
+            <button className="edit"><FaEdit color={'purple'}/> </button>
+            <div className="text-display" onClick={()=> editFeedback(item)}>{item.text}</div>
         </Card>
     );
 }
