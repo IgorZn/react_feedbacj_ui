@@ -14,8 +14,6 @@ import Tost from "./components/Tost";
 import {FeedbackProvider} from "./context/FeedbackContext";
 
 function App() {
-    const [feedback, setFeedback] = useState(FeedbackData);
-
     return (
         <FeedbackProvider>
             <BrowserRouter>
@@ -24,9 +22,9 @@ function App() {
                     <Routes>
                         <Route exact path="/" element={
                             <>
-                                <FeedbackForm setFeedback={setFeedback}/>
-                                <FeedbackStats/>
-                                <FeedBackList setFeedback={setFeedback}/>
+                                <FeedbackForm />
+                                <FeedbackStats />
+                                <FeedBackList />
                             </>
                         }>
                         </Route>

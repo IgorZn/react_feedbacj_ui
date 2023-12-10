@@ -4,7 +4,7 @@ import {motion, AnimatePresence} from "framer-motion";
 import { useContext } from "react";
 import FeedbackContext from "../context/FeedbackContext";
 
-function FeedBackList({setFeedback}) {
+function FeedBackList() {
     const {feedback} = useContext(FeedbackContext);
 
     if (!feedback || feedback.length === 0) {
@@ -14,7 +14,7 @@ function FeedBackList({setFeedback}) {
         <AnimatePresence>
             {feedback.map(item => (
                 <motion.div key={item.id} initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
-                    <FeedbackItem key={item.id} item={item} setFeedback={setFeedback}/>
+                    <FeedbackItem key={item.id} item={item}/>
                 </motion.div>
             ))}
 
