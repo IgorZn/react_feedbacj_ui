@@ -29,7 +29,8 @@ export const FeedbackProvider = ({children}) => {
         feedback,
         handleClose,
         setFeedback,
-        editFeedback
+        editFeedback,
+        feedbackEdit
     }}>
         {children}
     </FeedbackContext.Provider>
