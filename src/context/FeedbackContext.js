@@ -9,14 +9,19 @@ export const FeedbackProvider = ({children}) => {
         item: {},
         edit: false
     });
-    
+
     // Update feedback item
     const updateFeedback = (id, updItem) => {
         updItem.id = id
         setFeedback(
             feedback.map(item => item.id === id ? {...item, ...updItem} : item)
         )
-        console.log(id, updItem)
+
+        // After update set 'setFeedbackEdit' to default
+        setFeedbackEdit({
+            item: {},
+            edit: false
+        })
     }
 
     const editFeedback = (item) => {
