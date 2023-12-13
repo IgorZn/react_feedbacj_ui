@@ -1,8 +1,6 @@
-import {useState} from "react";
 import {BrowserRouter, Route, Routes, NavLink} from 'react-router-dom'
 //
 import Header from "./components/Header";
-import FeedbackData from "./fakeData";
 import FeedBackList from "./components/FeedBackList";
 import FeedbackStats from "./components/FeedbackStats";
 import FeedbackForm from "./components/FeedbackForm";

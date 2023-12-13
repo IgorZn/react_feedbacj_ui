@@ -15,7 +15,7 @@ function FeedbackItem({item}) {
                 <FaTimes color={"purple"} />
             </button>
             <button className="edit" onClick={()=> editFeedback(item)}><FaEdit color={'purple'}/> </button>
-            <div className="text-display" onClick={()=> editFeedback(item)}>{item.text}</div>
+            <div className="text-display">{item.text}</div>
         </Card>
     );
 }
