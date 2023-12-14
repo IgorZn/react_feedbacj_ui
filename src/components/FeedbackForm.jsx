@@ -3,6 +3,7 @@ import Card from './shared/Card'
 import Button from "./shared/Button";
 import RatingSelect from "./RatingSelect";
 import FeedbackContext from "../context/FeedbackContext";
+import {JS} from "json-server/lib/cli/utils/is";
 
 function FeedbackForm() {
     const {setFeedback, feedbackEdit, updateFeedback} = useContext(FeedbackContext);
@@ -34,18 +35,27 @@ function FeedbackForm() {
         setText(e.target.value)
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         const newFeedback = {
             text,
             rating
         }
+        
+        const response = await fetch('/feedback', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newFeedback)
+        })
+
+        const data = await response.json()
 
         if(feedbackEdit.edit === true){
-            updateFeedback(feedbackEdit.item.id, newFeedback)
+            updateFeedback(feedbackEdit.item.id, data)
         } else {
-            newFeedback.id = Date.now()
-            setFeedback(c => [newFeedback, ...c])
+            setFeedback(c => [data, ...c])
         }
 
 
