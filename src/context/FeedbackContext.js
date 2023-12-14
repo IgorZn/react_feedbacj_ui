@@ -1,14 +1,27 @@
-import {createContext, useState} from "react";
-import fakeData from "../fakeData";
+import {createContext, useEffect, useState} from "react";
 
 const FeedbackContext = createContext()
 
 export const FeedbackProvider = ({children}) => {
-    const [feedback, setFeedback] = useState(fakeData);
+    const [isLoading, setIsLoading] = useState(true);
+    const [feedback, setFeedback] = useState([]);
     const [feedbackEdit, setFeedbackEdit] = useState({
         item: {},
         edit: false
     });
+
+    useEffect( () => {
+        fetchFeedback()
+    }, []);
+
+    // Fetch feedback
+    const fetchFeedback = async () => {
+        const response = await fetch('http://localhost:5001/feedback?_sort=id&_order=desc')
+        const data = await response.json()
+        setFeedback(data)
+        setIsLoading(false)
+    }
+
 
     // Update feedback item
     const updateFeedback = (id, updItem) => {
@@ -43,6 +56,7 @@ export const FeedbackProvider = ({children}) => {
         feedback,
         setFeedback,
         feedbackEdit,
+        isLoading,
         handleClose,
         editFeedback,
         updateFeedback,
