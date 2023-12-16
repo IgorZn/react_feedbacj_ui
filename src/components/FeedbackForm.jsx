@@ -3,7 +3,6 @@ import Card from './shared/Card'
 import Button from "./shared/Button";
 import RatingSelect from "./RatingSelect";
 import FeedbackContext from "../context/FeedbackContext";
-import {JS} from "json-server/lib/cli/utils/is";
 
 function FeedbackForm() {
     const {setFeedback, feedbackEdit, updateFeedback} = useContext(FeedbackContext);
@@ -12,14 +11,14 @@ function FeedbackForm() {
     const [btnDisabled, setBtnDisabled] = useState(true);
     const [message, setMessage] = useState('');
     const [rating, setRating] = useState(1);
+
     useEffect(() => {
-        if(feedbackEdit.edit === true){
+        if (feedbackEdit.edit === true) {
             setBtnDisabled(false)
             setText(feedbackEdit.item.text)
             setRating(feedbackEdit.item.rating)
         }
     }, [feedbackEdit]);
-
 
     const handleTextChange = (e) => {
         if (text === '') {
@@ -41,20 +40,20 @@ function FeedbackForm() {
             text,
             rating
         }
-        
-        const response = await fetch('/feedback', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newFeedback)
-        })
 
-        const data = await response.json()
+        const getPostData = async () => {
+            const response = await fetch('/feedback', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newFeedback)
+            })
+            return await response.json()
+        }
 
-        if(feedbackEdit.edit === true){
-            updateFeedback(feedbackEdit.item.id, data)
+        if (feedbackEdit.edit === true) {
+            updateFeedback(feedbackEdit.item.id, newFeedback)
         } else {
+            const data = await getPostData()
             setFeedback(c => [data, ...c])
         }
 

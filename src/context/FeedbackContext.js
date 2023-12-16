@@ -10,7 +10,7 @@ export const FeedbackProvider = ({children}) => {
         edit: false
     });
 
-    useEffect( () => {
+    useEffect(() => {
         fetchFeedback()
     }, []);
 
@@ -23,10 +23,19 @@ export const FeedbackProvider = ({children}) => {
     }
 
     // Update feedback item
-    const updateFeedback = (id, updItem) => {
-        updItem.id = id
+    const updateFeedback = async (id, updItem) => {
+        const response = await fetch(`/feedback/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updItem)
+        })
+
+        const data = await response.json()
+
         setFeedback(
-            feedback.map(item => item.id === id ? {...item, ...updItem} : item)
+            feedback.map(item => item.id === id ? {...item, ...data} : item)
         )
 
         // After update set 'setFeedbackEdit' to default
@@ -44,8 +53,12 @@ export const FeedbackProvider = ({children}) => {
 
     }
 
-    const handleClose = (id) => {
+    // Delete feedback
+    const handleClose = async (id) => {
         if (window.confirm('Are you sure to delete feedback?')) {
+            await fetch(`/feedback/${id}`, {
+                method: 'DELETE'
+            })
             setFeedback(current => current.filter(feedback => feedback.id !== id))
         }
 
